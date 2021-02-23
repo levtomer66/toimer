@@ -81,7 +81,7 @@
         if (data.data.length > 0) {
           var password = prompt("enter password");
           if (password === "yeledtoharehad") {
-            const postData = { proposal: {price: this.proposal.price, status: "מאושר"} }
+            const postData = { proposal: {price: this.proposal.price, status: "💗 מאושר"} }
             await this.$axios.put(`https://crudcrud.com/api/c6d57d7648b644f18c317b3837dead21/req/${data.data[0]._id}`, postData, {headers: {'Content-Type': 'application/json'}})
             this.proposal = postData.proposal
           } else {
