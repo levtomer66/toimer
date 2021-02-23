@@ -1,5 +1,6 @@
 export default {
   mode: 'spa',
+  target: 'server',
   /*
    ** Headers of the page
    */
@@ -31,14 +32,30 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [ "@nuxtjs/axios"  ],
+
+
+  axios: {
+    credentials: false
+  },
   /*
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {},
-  },
-};
+    babel: {
+      presets({isServer}) {
+        const targets = isServer ? { node: 'current' } : { ie: 11 }
+        return [
+          [ require.resolve("@babel/preset-env"), { targets }  ]
+        ]
+      },
+      plugins: [
+        "@babel/syntax-dynamic-import",
+        "@babel/transform-runtime",
+        "@babel/transform-async-to-generator"
+      ]
+
+    // extend(config, ctx) {}
+  }
+}
+}
